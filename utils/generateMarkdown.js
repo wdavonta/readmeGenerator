@@ -1,6 +1,10 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(license) {
+  
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -21,7 +25,8 @@ function generateMarkdown(data) {
   -[license](#license)
   -[contributing](#contributing)
   -[test](#test)
-  -[]
+  -[github](#github)
+  -[email](#email)
 
     ${data.description}
   ##:description
@@ -40,6 +45,12 @@ function generateMarkdown(data) {
   
     ${data.test}
   ##:test
+
+    ${data.github}
+  ##:github
+
+    ${data.email}
+  ##:email
 
 
 

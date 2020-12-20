@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const fs =require('fs');
 const inquirer = require('inquirer');
-const generate = require('./util/generateMarkdown');
+const generate = require('./utils/generateMarkdown');
 
 
 // TODO: Create an array of questions for user input
@@ -16,6 +16,19 @@ const questions = [
             return true;
           } else {
             console.log('Please enter your project name!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'link',
+        message: 'Enter the GitHub link to your project. (Required)',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('Please enter your GitHub link to your project!');
             return false;
           }
         }
@@ -36,26 +49,52 @@ const questions = [
             message: 'Provide project inscructions ',
           },
           {
-            type: 'list',
+            type: 'checkbox',
             name: 'license',
-            message: 'What licese you use on project ',
-            choices: []
+            message: 'What license you use on project ',
+            choices: ['MIT', 'GNU', 'IBM', 'Apache 2.0', 'SIL']
           },
           {
             type: 'input',
             name: 'contributing',
-            message: 'Provide project instructions ',
+            message: 'Who are the contriibutors to the project? ',
           },
           {
             type: 'input',
             name: 'test',
             message: 'Provide test for project',
           },
-        ]
+          {
+            type: 'input',
+            name: 'github',
+            message: 'Enter your GitHub Username (Required)',
+            validate: nameInput => {
+              if (nameInput) {
+                return true;
+              } else {
+                console.log('Please enter your GitHub Username!');
+                return false;
+              }
+            }
+          },
+          {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email so people are able to reach you (Required)',
+            validate: emailInput => {
+              if (emailInput) {
+                return true;
+              } else {
+                console.log ('Please enter an email');
+                return false;
+              }
+            }
+          }
+        ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
+    writeFile(fileName, data, err => {
         if (err) {
             throw err;
         
@@ -69,9 +108,9 @@ function init() {
     inquirer.prompt(questions)
     .then(answers => {
 
-        const response = generate(answers);
+        const data = generate(answers);
         console.log("here your Readme");
-        fs.writeFile("ReadMe.md", response);
+        writeToFile("ReadMe.md", data);
 
     })
 }
