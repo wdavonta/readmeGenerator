@@ -23,7 +23,7 @@ const questions = [
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)',
+        message: 'Enter the GitHub link to your project: (Required)',
         validate: nameInput => {
           if (nameInput) {
             return true;
@@ -41,33 +41,33 @@ const questions = [
         {
             type: 'input',
             name: 'installation',
-            message: 'Expalin how project can be install',
+            message: 'Expalin how project can be install:',
           },
           {
             type: 'input',
             name: 'usage',
-            message: 'Provide project inscructions ',
+            message: 'Provide project instructions',
           },
           {
             type: 'checkbox',
             name: 'license',
-            message: 'What license you use on project ',
+            message: 'What license you use on the project? ',
             choices: ['MIT', 'GNU', 'IBM', 'Apache 2.0', 'SIL']
           },
           {
             type: 'input',
             name: 'contributing',
-            message: 'Who are the contriibutors to the project? ',
+            message: 'Who are the contributors to the project? ',
           },
           {
             type: 'input',
             name: 'test',
-            message: 'Provide test for project',
+            message: 'Provide test information for project:',
           },
           {
             type: 'input',
             name: 'github',
-            message: 'Enter your GitHub Username (Required)',
+            message: 'Enter your GitHub Username: (Required)',
             validate: nameInput => {
               if (nameInput) {
                 return true;
@@ -94,7 +94,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    writeFile(fileName, data, err => {
+    fs.writeFile(fileName, data, err => {
         if (err) {
             throw err;
         
@@ -106,13 +106,16 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
-    .then(answers => {
-
-        const data = generate(answers);
-        console.log("here your Readme");
-        writeToFile("ReadMe.md", data);
+    .then(data => {
+        return generate(data);
 
     })
+
+       .then(data => {
+        console.log("here your Readme");
+        return writeToFile("ReadMe.md", data);
+
+    });
 }
     
     

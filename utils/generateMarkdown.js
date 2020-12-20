@@ -36,7 +36,8 @@ function renderLicenseBadge(license) {
 
     return '';
     
-  }  
+  }
+};
 
 
 
@@ -45,49 +46,53 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 // license link reference/cited from https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba
 function renderLicenseLink(license) {
-if (license = 'MIT') {
-  return '',
+  if (license = 'MIT') {
+    return '',
 
-  [MIT]('https://opensource.org/licenses/MIT')
+    [MIT]('https://opensource.org/licenses/MIT')
 
-} else if (license = 'GNU') {
-  
-  return '',
+  } else if (license = 'GNU') {
+    
+    return '',
 
-  [GNU] ('https://www.gnu.org/licenses/gpl-3.0')
+    [GNU] ('https://www.gnu.org/licenses/gpl-3.0')
 
-} else if (license = 'IBM') {
-  
-  return '',
+  } else if (license = 'IBM') {
+    
+    return '',
 
-  [IBM] ('https://opensource.org/licenses/IPL-1.0')
+    [IBM] ('https://opensource.org/licenses/IPL-1.0')
 
-} else if(license = 'Apache 2.0') {
+  } else if(license = 'Apache 2.0') {
 
-  return '',
+    return '',
 
-  ![Apache] ('https://opensource.org/licenses/Apache-2.0')
+    ![Apache] ('https://opensource.org/licenses/Apache-2.0')
 
-} else if (license = 'SIL') {
+  } else if (license = 'SIL') {
 
-  return '',
+    return '',
 
-  [SIL] ('https://opensource.org/licenses/OFL-1.1')
-
-
-} else {
-
-  return ''
-}
+    [SIL] ('https://opensource.org/licenses/OFL-1.1')
 
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
+  } else {
 
-  if (license = '') {
-    return '';
-}
+    return ''
+  }
+  };
+
+
+  // TODO: Create a function that returns the license section of README
+  // If there is no license, return an empty string
+  function renderLicenseSection(license) {
+
+    if (license = '') {
+      return '';
+    
+  }
+};
+
 
 
 
@@ -98,7 +103,10 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `
+  #Project Title 
+  
+  ${data.name}
 
   # Table of Content
   -[desctiption](#description)
@@ -110,29 +118,33 @@ function generateMarkdown(data) {
   -[github](#github)
   -[email](#email)
 
+
+  ## Description
     ${data.description}
-  ##:description
-
-    ${data.installation}
-  ##:insallation
-
-    ${data.usage}
-  ##:usage
-
-    ${data.license}
-  ##:license
-
-    ${data.contributing}
-  ##:contributing
   
+  ## Insallation
+    ${data.installation}
+  
+  ## Usage
+    ${data.usage}
+  
+  ## License
+    ${data.license}
+  
+  ## Contributing
+    ${data.contributing}
+
+  ## Test
     ${data.test}
-  ##:test
-
-    ${data.github}
-  ##:github
-
-    ${data.email}
-  ##:email
+  
+  ## Github
+    ${data.github} 
+    [https://github.com/${data.github}]
+  
+  If you have any questions comments or concerns please contact to email below:
+  ## Email
+    <${data.email}>
+  
 
 
 
